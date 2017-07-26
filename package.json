@@ -17,6 +17,7 @@
     "cheerio": "^1.0.0-rc.2",
     "compression": "^1.2.0",
     "cookie-session": "^1.0.2",
+    "cors": "^2.8.4",
     "express": "^4.9.7",
     "foreman": "^0.4.2",
     "jackrabbit": "^2.3.0",

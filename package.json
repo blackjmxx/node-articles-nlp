@@ -24,7 +24,7 @@
     "lodash": "^2.4.1",
     "logfmt": "^1.1.2",
     "mongoose": "~3.8.13",
-    "mongoose-cache": "https://github.com/hunterloftis/mongoose-cache",
+    "mongoose-cache": "git://github.com/hunterloftis/mongoose-cache",
     "mongoose-timestamp": "^0.3.0",
     "morgan": "^1.2.0",
     "node-horseman": "^3.2.0",

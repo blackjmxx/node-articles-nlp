@@ -14,6 +14,7 @@
   "dependencies": {
     "amqplib": "^0.2.1",
     "body-parser": "^1.5.0",
+    "cheerio": "^1.0.0-rc.2",
     "compression": "^1.2.0",
     "cookie-session": "^1.0.2",
     "express": "^4.9.7",
@@ -28,8 +29,10 @@
     "morgan": "^1.2.0",
     "node-horseman": "^3.2.0",
     "node-uuid": "^1.4.1",
+    "phantomjscloud": "^3.0.0",
     "promise": "^5.0.0",
     "request": "^2.79.0",
+    "scrape-it": "^3.3.2",
     "serve-favicon": "~2.0.1",
     "summarize": "^1.5.0",
     "superagent": "^0.18.2",

@@ -34,6 +34,14 @@
     "COOKIE_SECRET": {
       "description": "a secret key for signed cookies",
       "generator": "secret"
+    },
+    "ENABLE_DEBUG":{
+      "description": "enable",
+      "value": "false"
+    },
+    "AUX_PORT":{
+      "description": "port",
+      "value": "1234"
     }
   },
      "buildpacks": [
@@ -42,6 +50,9 @@
     },
     {
       "url": "heroku/nodejs"
+    },
+    {
+      "url":"https://github.com/jkutner/heroku-buildpack-ngrok.git"
     }
   ]
 }

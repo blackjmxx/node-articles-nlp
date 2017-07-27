@@ -50,9 +50,7 @@
     },
     {
       "url": "heroku/nodejs"
-    },
-    {
-      "url":"https://github.com/jkutner/heroku-buildpack-ngrok.git"
     }
   ]
 }
+

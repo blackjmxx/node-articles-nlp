@@ -40,8 +40,5 @@
     "superagent": "^0.18.2",
     "throng": "^1.0.0"
   },
-  "devDependencies": {},
-  "engines": {
-    "iojs": "1.0.x"
-  }
+  "devDependencies": {}
 }

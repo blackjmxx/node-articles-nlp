@@ -1,0 +1,50 @@
+{
+  "success": true,
+  "data": [
+    {
+      "bout_id": "1",
+      "image": null,
+      "url":"http://content.asos-media.com/~/media/060213093000fr-FR/Images/uk/Archive/june/asos-logo.png",
+      "isWorking":true,
+      "name":"Asos",
+      "action":"ASOS",
+      "isComming":false
+    },
+    {
+      "bout_id": "2",
+      "image": null,
+      "url":"https://static.zara.net/stdstatic/1.41.0-b.17/images/logo-zara-16.svg",
+      "isWorking":true,
+      "name":"Zara",
+      "action":"ZARA",
+      "isComming":false
+    },
+    {
+      "bout_id": "3",
+      "image": null,
+      "url":"images/logo/zalando.svg",
+      "isWorking":true,
+      "name":"Zalando",
+      "action":"ZALANDO",
+      "isComming":false
+    },
+      {
+      "bout_id": "5",
+      "image": null,
+      "url":"http://www.laredoute.fr/images/header/logov2-100_1_fr-fr.png",
+      "isWorking":true,
+      "name":"Laredoute",
+      "action":"LAREDOUTE",
+      "isComming":true
+    },
+    {
+      "bout_id": "6",
+      "image": null,
+      "url":"http://www.kickers.com/themes/kickers/img//kickers-logo.svg",
+      "isWorking":false,
+      "name":"Kickers",
+      "action":"KICKERS",
+      "isComming":true
+    }
+  ]
+}

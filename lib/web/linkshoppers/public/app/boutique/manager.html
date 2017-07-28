@@ -1,0 +1,70 @@
+<div class="page page-dashboard">
+    <div class="row" data-ng-controller="ManagerCtrl">
+        <div class="row ui-section">
+            <div class="col-lg-8 clearfix">
+                <h2 class="section-header">Entrer le lien de l'article du site {{boutiqueName}}</h2>
+            </div>
+            <div class="col-md-12">
+                <section class="panel panel-default">
+                    <div class="panel-body padding-lg">
+                        <div>
+                            <div layout layout-sm="column">
+                                <md-input-container flex>
+                                    <label>Lien de  l'article</label>
+                                    <input required placeholder="Le lien de l'article doit commencer par http:// ou  https://" ng-model="data.url">
+                                </md-input-container>
+                            </div>
+                            <div layout layout-sm="column" ng-controller="InputCtrl">
+                                <md-input-container flex>
+                                    <label>Type d'article</label>
+                                    <md-select placeholder="Type d'article" ng-model="data.typeArticle">
+                                        <md-option required ng-repeat="state in articleTypes" ng-value="state.articleType">
+                                            {{state.typeArticle}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>Taille de l'article</label>
+                                    <input required placeholder="Taille de l'article" ng-model="data.tailleArticle">
+                                </md-input-container>
+                            </div>
+                            <div layout layout-sm="column">
+                                <md-input-container flex>
+                                    <label>Infos complementaires</label>
+                                    <textarea ng-model="data.infos" columns="1" md-maxlength="150"></textarea>
+                                </md-input-container>
+                            </div>
+                            <md-button ng-click="extract()" class="md-raised btn-w-md md-primary">Extraire</md-button>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panel-labeled">
+                                <div class="panel-body">
+                                    <div class="media-list media-divider-full">
+                                        <div class="media" ng-repeat="product in ExtractedProduct">
+                                            <a class="media-left" href="javascript:;">
+                                                <img alt="" src="{{product.imgUrl}}" class="img-circle img64_64">
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">{{product.title}}</h4>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <p>{{product.price}}</p>
+                                                        <p>{{product.brand}}</p>
+                                                        <ngcart-addtocart id="{{product.url}}" name="{{product.title}}" price="{{product.price}}" quantity="1" quantity-max="2" class="md-raised btn-w-md md-primary"
+                                                            data="item">Ajouter aux panier</ngcart-addtocart>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>

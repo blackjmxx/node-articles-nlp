@@ -1,0 +1,19 @@
+<div class="page page-dashboard">
+    <div class="row" data-ng-controller="DashBoardCtrl">
+        <!-- Stats -->
+        <div class="col-lg-3 col-xsm-6" ng-repeat="boutique in boutiques">
+            <div class="panel panel-box" ng-click="goToBoutiquesManager(boutique)">
+                <div class="panel-top">
+                    <img ng-src="{{getImage(boutique)}}">
+                </div>
+                <div class="panel-info">
+                    <span data-translate="Ouvrir la boutique"></span>
+                </div>
+                <div class="panel-bottom bg-light">
+                    <span>{{boutique.name}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- end stats -->
+    </div>
+</div>

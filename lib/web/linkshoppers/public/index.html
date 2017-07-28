@@ -1,0 +1,152 @@
+<!doctype html>
+<!--[if lt IE 8]>         <html class="no-js lt-ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    <title>Web Application</title>
+    <meta name="description" content="Responsive Admin Web App with Bootstrap and AngularJS">
+    <meta name="keywords" content="angularjs admin, admin templates, admin themes, bootstrap admin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Needs images, font... therefore can not be part of main.css -->
+    <link rel="stylesheet" href="styles/loader.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,500,700,300,300italic,500italic|Roboto+Condensed:400,300'
+        rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+    <div id="fb-root"></div>
+    <!-- end Needs images -->
+
+
+    <link rel="stylesheet" href="styles/main.css">
+
+</head>
+
+<body data-ng-app="app" id="app" class="app" data-custom-page data-off-canvas-nav data-ng-controller="AppCtrl" data-ng-class=" { 'layout-boxed': main.layout === 'boxed', 
+                            'nav-collapsed-min': main.menu === 'collapsed'
+          } ">
+    <!--[if lt IE 9]>
+            <div class="lt-ie9-bg">
+                <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
+                <p>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            </div>
+        <![endif]-->
+
+    <div id="loader-container"></div>
+
+    <header data-ng-include=" 'app/layout/header.html' " id="header" class="header-container " data-ng-class="{ 'header-fixed': main.fixedHeader,
+                                  'bg-white': ['11','12','13','14','15','16','21'].indexOf(main.skin) >= 0,
+                                  'bg-dark': main.skin === '31',
+                                  'bg-primary': ['22','32'].indexOf(main.skin) >= 0,
+                                  'bg-success': ['23','33'].indexOf(main.skin) >= 0,
+                                  'bg-info': ['24','34'].indexOf(main.skin) >= 0,
+                                  'bg-warning': ['25','35'].indexOf(main.skin) >= 0,
+                                  'bg-danger': ['26','36'].indexOf(main.skin) >= 0
+                 }"></header>
+
+    <div class="main-container" data-ng-class="{ 'app-nav-horizontal': main.menu === 'horizontal' }">
+        <aside data-ng-include=" 'app/layout/sidebar.html' " id="nav-container" class="nav-container" data-ng-class="{ 'nav-fixed': main.fixedSidebar,
+                                    'nav-horizontal': main.menu === 'horizontal',
+                                    'nav-vertical': main.menu === 'vertical',
+                                    'bg-white': ['31','32','33','34','35','36'].indexOf(main.skin) >= 0,
+                                    'bg-dark': ['31','32','33','34','35','36'].indexOf(main.skin) < 0
+                   }">
+        </aside>
+
+        <div id="content" class="content-container">
+            <section data-ui-view class="view-container {{main.pageTransition.class}}"></section>
+        </div>
+    </div>
+
+<script id="template/ngCart/addtocart.html" type="text/ng-template">
+<div ng-show="attrs.id">
+    <div class="">
+        <span ng-show="quantityMax">
+            <select name="quantity" id="quantity" ng-model="q"
+                    ng-options=" v for v in qtyOpt"></select>
+        </span>
+        <a class="btn btn-sm btn-primary"
+           ng-click="ngCart.addItem(id, name, price, q, data)"
+           ng-transclude></a>
+    </div>
+    <mark  ng-show="inCart()">
+        Cet article est dans votre panier. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Enlever</a>
+    </mark>
+</div>
+
+</script>
+<script id="template/ngCart/summary.html" type="text/ng-template">
+<a href="" ng-disabled="disabled" md-button aria-label="email" aria-label="email" aria-label="email">
+    <div  class="dropdown-toggle" uib-dropdown-toggle md-button aria-label="email" aria-label="email" aria-label="email">
+        <i class="zmdi zmdi-shopping-cart"></i>
+        <span class="badge badge-danger">{{ ngCart.getTotalItems() }}</span>
+    </div>
+</a>
+</script>
+<script id="template/ngCart/cart.html" type="text/ng-template">
+<div class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
+    Votre panier est vide
+</div>
+
+<div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
+
+    <table class="table table-striped ngCart cart">
+
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Quantité</th>
+            <th>Prix en Euro</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr ng-show="ngCart.getTax()">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Tax ({{ ngCart.getTaxRate() }}%):</td>
+            <td>{{ ngCart.getTax() | currency : "€"}}</td>
+        </tr>
+        <tr ng-show="ngCart.getShipping()">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Shipping:</td>
+            <td>{{ ngCart.getShipping() | currency : "€"}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td>{{ ngCart.totalCost() | currency : "€"}}</td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr ng-repeat="item in ngCart.getCart().items track by $index">
+            <td><span ng-click="ngCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></td>
+
+            <td>{{ item.getName() }}</td>
+            <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
+                      ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                {{ item.getQuantity() | number }}&nbsp;&nbsp;
+                <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
+            <td>{{ item.getPrice() | currency : "€"}}</td>
+            <td>{{ item.getTotal() | currency : "€"}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</script>
+
+    <script src="scripts/vendor.js"></script>
+
+    <script src="scripts/ui.js"></script>
+
+    <script src="scripts/app.js"></script>

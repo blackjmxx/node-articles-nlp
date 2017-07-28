@@ -1,0 +1,63 @@
+<header class="top-header clearfix">
+    <div ui-preloader></div>
+
+    <!-- Logo -->
+    <div class="logo"
+         ng-class="{ 'bg-dark': ['11','31'].indexOf(main.skin) >= 0,
+                     'bg-white': main.skin === '21',
+                     'bg-primary': ['12','22','32'].indexOf(main.skin) >= 0,
+                     'bg-success': ['13','23','33'].indexOf(main.skin) >= 0,
+                     'bg-info': ['14','24','34'].indexOf(main.skin) >= 0,
+                     'bg-warning': ['15','25','35'].indexOf(main.skin) >= 0,
+                     'bg-danger': ['16','26','36'].indexOf(main.skin) >= 0 }">
+        <a href="#/">
+            <span class="logo-icon zmdi zmdi-view-dashboard"></span>
+            <span class="logo-text">{{main.brand}}</span>
+        </a>
+    </div>
+    
+    <!-- needs to be put after logo to make it work -->
+    <div class="menu-button" toggle-off-canvas>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </div>
+    <div class="top-nav">
+        <ul class="nav-left list-unstyled">
+             <li style="margin-top: 20%;" ng-click="checkOutCart()" uib-dropdown >
+                <ngcart-summary></ngcart-summary>
+            </li>
+        </ul> 
+        <ul class="nav-right pull-right list-unstyled">
+            <li class="dropdown text-normal nav-profile" uib-dropdown is-open="status.isopenProfile">
+                <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled" md-button aria-label="email" aria-label="profile">
+
+                    <img ng-src="{{main.imgProfile}}"  alt="" class="img-circle img30_30">
+
+                    <span class="hidden-xs">
+                        <span>{{main.name}}</span>
+                    </span>
+                </a>
+                <ul class="uib-dropdown-menu with-arrow pull-right dropdown-menu-scaleIn">
+                    <li>
+                        <a href="#/">
+                            <i class="zmdi zmdi-home"></i>
+                            <span data-translate="">Boutiques</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="logOut()">
+                            <i class="zmdi zmdi-forward"></i>
+                            <span data-translate="LOG_OUT"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown langs text-normal" data-ng-controller="LangCtrl" uib-dropdown is-open="status.isopenLang">
+                <a href="javascript:;" class="dropdown-toggle active-flag" uib-dropdown-toggle ng-disabled="disabled" md-button aria-label="lang">
+                    <div class="flag {{ getFlag() }}"></div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>

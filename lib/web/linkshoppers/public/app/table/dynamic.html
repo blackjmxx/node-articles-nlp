@@ -1,109 +1,19 @@
-<div class="page page-table" data-ng-controller="TableCtrl">
-
-	<div class="row ui-section">
-		<div class="col-lg-8 clearfix">
-			<h2 class="section-header">Commandes</h2>
-		</div>
-		<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="ui-tab-container ui-tab-horizontal">
-						<uib-tabset justified="false" class="ui-tab">
-							<uib-tab heading="Panier" ng-click="loadTab(1)">
-								<ngcart-cart></ngcart-cart>
-								<div class="col-md-12">
-									<md-button ng-click="gotoOrderWizard()" class="md-raised btn-w-md md-primary">Obtenir la cotation</md-button>
-								</div>
-							</uib-tab>
-							<uib-tab heading="Commandes" ng-click="loadTab(2)">
-								<div class="table-filters">
-									<div class="row">
-									<!-- <div class="col-sm-4 col-xs-6">
-											<form>
-												<input type="text" placeholder="Search..." class="form-control" data-ng-model="searchKeywords" data-ng-keyup="search()">
-											</form>
-										</div>
-										<div class="col-sm-3 col-xs-6 filter-result-info">
-											<span>
-                                            {{filteredStores.length}}/{{stores.length}} commande(s) trouvé(es)
-                                            </span>
-										</div> -->
-									</div>
-								</div>
-								<table class="table table-bordered table-striped table-responsive">
-									<thead>
-										<tr>
-											<th>
-												<div class="th">
-													Numéro de commande
-													<span class="fa fa-angle-up" data-ng-click=" order('numeroCmd') " data-ng-class="{active: row == 'numeroCmd'}"></span>
-													<span class="fa fa-angle-down" data-ng-click=" order('-numeroCmd') " data-ng-class="{active: row == '-numeroCmd'}"></span>
-												</div>
-											</th>
-											<th>
-												<div class="th">
-													Prix total
-													<span class="fa fa-angle-up" data-ng-click=" order('prixTotal') " data-ng-class="{active: row == 'prixTotal'}"></span>
-													<span class="fa fa-angle-down" data-ng-click=" order('-prixTotal') " data-ng-class="{active: row == '-prixTotal'}"></span>
-												</div>
-											</th>
-											<th>
-												<div class="th">
-													Details de la commande
-													<span class="fa fa-angle-up" data-ng-click=" order('details') " data-ng-class="{active: row == 'details'}"></span>
-													<span class="fa fa-angle-down" data-ng-click=" order('-details') " data-ng-class="{active: row == '-details'}"></span>
-												</div>
-											</th>
-											<th>
-												<div class="th">
-													Commande éffectué le
-													<span class="fa fa-angle-up" data-ng-click=" order('date') " data-ng-class="{active: row == 'date'}"></span>
-													<span class="fa fa-angle-down" data-ng-click=" order('-date') " data-ng-class="{active: row == '-date'}"></span>
-												</div>
-											</th>
-                                            <th>
-												<div class="th">
-													Status
-													<span class="fa fa-angle-up"  data-ng-class="{active: row == 'status'}"></span>
-													<span class="fa fa-angle-down"  data-ng-class="{active: row == '-status'}"></span>
-												</div>
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr data-ng-repeat="store in currentPageStores">
-											<td>{{store.numeroCmd}}</td>
-											<td>{{store.prixTotal}}</td>
-											<td>{{store.details}}</td>
-											<td>{{store.date}}</td>
-                                           <td><md-button class="md-accent btn-w-md md-raised" ng-click="showConfirm($event,store.state)"> Status </md-button></td>										</tr>
-									</tbody>
-								</table>
-								<footer class="table-footer">
-									<div class="row">
-										<div class="col-md-6 page-num-info">
-											<span>
-                                            Montrer 
-                                            <select data-ng-model="numPerPage"
-                                                data-ng-options="num for num in numPerPageOpt"
-                                                data-ng-change="onNumPerPageChange()">
-                                            </select> 
-                                           commandes par page
-                                            </span>
-										</div>
-										<div class="col-md-6 text-right pagination-container">
-											<uib-pagination class="pagination-sm" ng-model="currentPage" total-items="filteredStores.length" max-size="4" ng-change="select(currentPage)"
-												items-per-page="numPerPage" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" boundary-links="true"></uib-pagination>
-										</div>
-									</div>
-								</footer>
-							</uib-tab>
-						</uib-tabset>
-					</div>
-				</div>
-			</div>
-			<section class="panel panel-default table-dynamic">
-			</section>
-		</div>
-	</div>
+<div class="page page-dashboard">
+    <div class="row" data-ng-controller="DynamicCtrl">
+        <!-- Stats -->
+        <div class="col-lg-3 col-xsm-6" ng-repeat="boutique in boutiques">
+            <div class="panel panel-box" ng-click="goToBoutiquesManager(boutique)">
+                <div class="panel-top">
+                    <img ng-src="{{getImage(boutique)}}">
+                </div>
+                <div class="panel-info">
+                    <span data-translate="Ouvrir la boutique"></span>
+                </div>
+                <div class="panel-bottom bg-light">
+                    <span>{{boutique.name}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- end stats -->
+    </div>
 </div>

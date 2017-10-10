@@ -19,7 +19,7 @@
                                     <label>Type d'article</label>
                                     <md-select placeholder="Type d'article" ng-model="data.typeArticle">
                                         <md-option required ng-repeat="state in articleTypes" ng-value="state.articleType">
-                                            {{state.typeArticle}}
+                                            {{state.articleType}}
                                         </md-option>
                                     </md-select>
                                 </md-input-container>
@@ -34,7 +34,12 @@
                                     <textarea ng-model="data.infos" columns="1" md-maxlength="150"></textarea>
                                 </md-input-container>
                             </div>
-                            <md-button ng-click="extract()" class="md-raised btn-w-md md-primary">Extraire</md-button>
+                            <div class="column">
+                            <div class="callout callout-info">
+                                    <span>Assurez-vous de remplir correctement <code>tous les champs</code>. En cas d'erreur nos équipes annuleront la commande</span>
+                            </div>
+                            <md-button  ng-click="extract()" ng-style="{'background-color':'#008d55','color':'white'}" class="md-raised btn-w-md">Extraire</md-button>
+                            </div>             
                         </div>
                     </div>
                 </section>
@@ -52,10 +57,11 @@
                                                 <h4 class="media-heading">{{product.title}}</h4>
                                                 <div class="row">
                                                     <div class="col-md-8">
-                                                        <p>{{product.price}}</p>
+                                                        <p>Prix hors frais : {{product.price}}</p>
+                                                        <p>Prix hors frais fcfa : {{product.price | fcfa}}</p>                                                        
                                                         <p>{{product.brand}}</p>
-                                                        <ngcart-addtocart id="{{product.url}}" name="{{product.title}}" price="{{product.price}}" quantity="1" quantity-max="2" class="md-raised btn-w-md md-primary"
-                                                            data="item">Ajouter aux panier</ngcart-addtocart>
+                                                        <ngcart-addtocart  ng-style="{'background-color':'#008d55','color':'black'}" id="{{product.url}}" name="{{product.title}}" price="{{product.price}}"  quantity="1" quantity-max="2" class="md-raised btn-w-md"
+                                                            data="{clotheType:product.clotheType}">Ajouter aux panier</ngcart-addtocart>
                                                     </div>
                                                 </div>
                                             </div>
